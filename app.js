@@ -4,7 +4,14 @@ let app = new Vue({
 
     data: {
 
-        clockstuff: '00:00:00'
+        clockstuff: '00:00:00',
+        alarmTime: '00:00:00',
+        alarmHours: 0,
+        alarmMinutes: 0,
+        alarmSeconds: 0,
+        alarmStore: '00:00:00',
+        alertMessage: '',
+
 
     },
 
@@ -12,12 +19,14 @@ let app = new Vue({
 
         let self = this;
         self.clockstuff = self.setTime();
-
+        self.alertMessage = self.alarmAlert();
         setInterval(function() {
             self.clockstuff = self.setTime();
+            self.alertMessage = self.alarmAlert();
         }, 1000);
 
     },
+
 
     methods: {
 
@@ -26,6 +35,10 @@ let app = new Vue({
             let now = new Date();
 
             let hours = now.getHours();
+            this.alarmHours = hours;
+            let suffix = hours >= 12 ? "PM":"AM";
+            hours = ((hours + 11) % 12 + 1)
+
             if (hours < 10) {
                 hours = '0' + hours;
             }
@@ -39,14 +52,33 @@ let app = new Vue({
             if (seconds < 10) {
                 seconds = '0' + seconds;
             }
+            this.alarmSeconds = seconds;
+            this.alarmMinutes = minutes;
+            return hours + ':' + minutes + ':' + seconds + " " + suffix;
 
-            return hours + ':' + minutes + ':' + seconds;
+        },
+
+        setAlarm: function () {
+
+            this.alarmStore = this.alarmTime;
+            console.log(this.alarmStore);
+
+
+        },
+
+        alarmAlert: function () {
+
+          let alarmMatch = this.alarmHours + ':' + this.alarmMinutes;
+
+          if (this.alarmStore == alarmMatch){
+
+              return "Wake up!";
 
         }
 
+      }
 
     }
-
 
 
 

@@ -16,8 +16,17 @@
     <h1 class="text-light">Vue Digital Clock</h1>
 
     <div id="app" class="pt-5" v-cloak>
+                    <p>{{ alertMessage }}</p>
+            <fieldset class="text-warning">
 
-        <h2 class="text-info" id="clock">{{ clockstuff }}</h2>
+        <div class="control">
+          <label for="appt-time">When we wakin up?</label>
+          <input  v-model="alarmTime" type="time" id="alarm" name="alarmparams"/>
+          <button v-on:click="setAlarm()" class="btn btn-danger ml-2">Set Alarm</button>
+        </div>
+      </fieldset>
+
+        <h2 class="text-success" id="clock">{{ clockstuff }}</h2>
 
     </div>
 
