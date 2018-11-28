@@ -11,6 +11,8 @@ let app = new Vue({
         alarmSeconds: 0,
         alarmStore: '00:00:00',
         alertMessage: '',
+        timerTime: '00:00:00',
+        timerStore: '00:00:00'
 
 
     },
@@ -75,6 +77,18 @@ let app = new Vue({
               return "Wake up!";
 
         }
+
+      },
+
+      setTimer: function () {
+        this.timerStore = this.timerTime;
+        console.log(this.timerStore);
+
+      },
+
+      runTimer: function () {
+
+        this.timerStore--;
 
       }
 

@@ -19,12 +19,21 @@
                     <p>{{ alertMessage }}</p>
             <fieldset class="text-warning">
 
-        <div class="control">
+        <div class="alarmControl">
           <label for="appt-time">When we wakin up?</label>
           <input  v-model="alarmTime" type="time" id="alarm" name="alarmparams"/>
           <button v-on:click="setAlarm()" class="btn btn-danger ml-2">Set Alarm</button>
         </div>
       </fieldset>
+              <fieldset class="text-warning">
+
+          <div class="timerControl mt-3">
+            <label for="appt-time">When we doin stuff?</label>
+            <input  v-model="timerTime" type="time" step='1' id="timer" name="timerparams"/>
+            <button v-on:click="setTimer()" class="btn btn-danger ml-2">Set Timer</button>
+          </div>
+        </fieldset>
+
 
         <h2 class="text-success" id="clock">{{ clockstuff }}</h2>
 
